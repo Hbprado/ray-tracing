@@ -4,24 +4,19 @@
 #include "point.h"
 
 struct Vector {
-
-    Point origin, direction;
+    double x, y, z;
 
     Vector();
-    Vector(const Point &origin, const Point &direction);
+    Vector(double _x, double _y, double _z);
 
-    double magnitude() const;
-    double dot(const Vector &other) const;
-    Vector cross(const Vector &other) const;
-
+    // Operações com vetores
     Vector operator+(const Vector &other) const;
     Vector operator-(const Vector &other) const;
-    Vector operator*(const double &k) const;
-    Vector operator/(const double &k) const;
-
+    Vector operator*(double scalar) const;
+    double dot(const Vector &other) const;
+    Vector cross(const Vector &other) const;
+    double length() const;
     Vector normalize() const;
-    Vector scale(const double &k) const;
-
 };
 
 #endif
