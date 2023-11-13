@@ -1,8 +1,9 @@
 #ifndef POINT_H
 #define POINT_H
 
-struct Point {
+#include "vector.h"
 
+struct Point {
     double x, y, z;
 
     Point();
@@ -15,6 +16,8 @@ struct Point {
 
     double distance(const Point &other) const;
 
+    Vector operator-(const Point &other) const;
+    Point& operator+=(const Vector &other);
 };
 
 #endif
