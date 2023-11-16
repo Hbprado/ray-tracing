@@ -40,3 +40,31 @@ Point& Point::operator+=(const Vector& other) {
     z += other.z;
     return *this;
 }
+
+
+/*int main() {
+    // Criar pontos
+    Point p1(1.0, 2.0, 3.0);
+    Point p2(4.0, 5.0, 6.0);
+
+    // Calcular distância entre os pontos
+    double distance = p1.distance(p2);
+    std::cout << "Distância entre p1 e p2: " << distance << std::endl;
+
+    // Testar operadores de comparação
+    std::cout << "p1 > p2: " << (p1 > p2) << std::endl;
+    std::cout << "p1 < p2: " << (p1 < p2) << std::endl;
+    std::cout << "p1 == p2: " << (p1 == p2) << std::endl;
+    std::cout << "p1 != p2: " << (p1 != p2) << std::endl;
+
+    // Criar vetor a partir da diferença entre pontos
+    Vector v = p1 - p2;
+    std::cout << "Vetor resultante: (" << v.x << ", " << v.y << ", " << v.z << ")" << std::endl;
+
+    // Testar operador de adição com vetor
+    Vector addVector(1.0, 1.0, 1.0);
+    p1 += addVector;
+    std::cout << "Novo ponto após adição do vetor: (" << p1.x << ", " << p1.y << ", " << p1.z << ")" << std::endl;
+
+    return 0;
+}*/

@@ -30,21 +30,23 @@ public:
 
     void move(const Vector& translation);
 
+     void printInfo() const;
+
     // Calcular o raio para um pixel específico na tela (considerando perspectiva)
     //Ray calculateRayForPixel(int x, int y) const;
 
-    const Point& getPosition() const { return position; }
-    const Point& getLookAt() const { return lookAt; }
-    const Vector& getUp() const { return up; }
-    const Vector& getU() const { return u; }
-    const Vector& getV() const { return v; }
-    const Vector& getW() const { return w; }
+
+    Point getPosition() const { return position; }
+    Point getLookAt() const { return lookAt; }
+    Vector getUp() const { return up; }
+    Vector getU() const { return u; }
+    Vector getV() const { return v; }
+    Vector getW() const { return w; }
     double getDistance() const { return distance; }
     int getVResolution() const { return vResolution; }
     int getHResolution() const { return hResolution; }
     double getFocalDistance() const { return focalDistance; }
     double getFieldOfView() const { return fieldOfView; }
-
 private:
     // Métodos privados para calcular os vetores ortonormais U, V, W
     void computeUVW();

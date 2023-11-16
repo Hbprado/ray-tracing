@@ -39,22 +39,12 @@ Vector Vector::normalize() const {
     }
 }
 
-
 /*int main() {
-    // Testando operações com pontos
-    Point p1(1.0, 2.0, 3.0);
-    Point p2(4.0, 5.0, 6.0);
-
-    std::cout << "Distancia entre p1 e p2: " << p1.distance(p2) << std::endl;
-    std::cout << "p1 > p2: " << (p1 > p2) << std::endl;
-    std::cout << "p1 < p2: " << (p1 < p2) << std::endl;
-    std::cout << "p1 == p2: " << (p1 == p2) << std::endl;
-    std::cout << "p1 != p2: " << (p1 != p2) << std::endl;
-
-    // Testando operações com vetores
+    // Criando dois vetores para teste
     Vector v1(1.0, 2.0, 3.0);
     Vector v2(4.0, 5.0, 6.0);
 
+    // Operações com vetores
     Vector sum = v1 + v2;
     Vector difference = v1 - v2;
     Vector scaled = v1 * 2.0;
@@ -63,14 +53,14 @@ Vector Vector::normalize() const {
     double length = v1.length();
     Vector normalized = v1.normalize();
 
-    std::cout << "\nOperações com vetores:" << std::endl;
-    std::cout << "Soma: (" << sum.x << ", " << sum.y << ", " << sum.z << ")" << std::endl;
-    std::cout << "Diferença: (" << difference.x << ", " << difference.y << ", " << difference.z << ")" << std::endl;
-    std::cout << "Multiplicação por escalar: (" << scaled.x << ", " << scaled.y << ", " << scaled.z << ")" << std::endl;
-    std::cout << "Produto escalar: " << dotProduct << std::endl;
-    std::cout << "Produto vetorial: (" << crossProduct.x << ", " << crossProduct.y << ", " << crossProduct.z << ")" << std::endl;
-    std::cout << "Comprimento: " << length << std::endl;
-    std::cout << "Vetor normalizado: (" << normalized.x << ", " << normalized.y << ", " << normalized.z << ")" << std::endl;
+    // Imprimindo resultados
+    std::cout << "Soma: (" << sum.x << ", " << sum.y << ", " << sum.z << ")\n";
+    std::cout << "Diferença: (" << difference.x << ", " << difference.y << ", " << difference.z << ")\n";
+    std::cout << "Multiplicação por escalar: (" << scaled.x << ", " << scaled.y << ", " << scaled.z << ")\n";
+    std::cout << "Produto escalar: " << dotProduct << "\n";
+    std::cout << "Produto vetorial: (" << crossProduct.x << ", " << crossProduct.y << ", " << crossProduct.z << ")\n";
+    std::cout << "Comprimento: " << length << "\n";
+    std::cout << "Vetor normalizado: (" << normalized.x << ", " << normalized.y << ", " << normalized.z << ")\n";
 
     return 0;
 }*/
