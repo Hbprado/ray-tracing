@@ -51,6 +51,26 @@ void Camera::setFieldOfView(double fov) {
     fieldOfView = fov;
 }
 
+
+Ray Camera::calculateRayForPixel(int x, int y) const {
+    // Normalizar as coordenadas do pixel
+    double ndcX = (x + 0.5) / hResolution;
+    double ndcY = (y + 0.5) / vResolution;
+
+    // Converter para coordenadas da tela
+    double screenX = 2.0 * ndcX - 1.0;
+    double screenY = 1.0 - 2.0 * ndcY;
+
+    // Calcular direção do raio
+    Vector rayDirection = w * (-distance) + u * screenX + v * screenY;
+
+    // Ajustar a direção para ser normalizada
+    rayDirection = rayDirection.normalize();
+
+    // Criar e retornar o raio
+    return Ray(position, rayDirection);
+}
+
 // Métodos privados
 void Camera::computeUVW() {
     w = (position - lookAt).normalize();

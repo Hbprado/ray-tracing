@@ -18,6 +18,8 @@ struct Point {
 
     Vector operator-(const Point &other) const;
     Point& operator+=(const Vector &other);
+    Point operator+(const Vector& other) const;
+
 };
 
 #endif

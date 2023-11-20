@@ -41,6 +41,9 @@ Point& Point::operator+=(const Vector& other) {
     return *this;
 }
 
+Point Point::operator+(const Vector& other) const {
+    return Point(x + other.x, y + other.y, z + other.z);
+}
 
 /*int main() {
     // Criar pontos

@@ -5,6 +5,7 @@
 
 #include "point.h"
 #include "vector.h"
+#include "ray.h"
 //#include "ray.h" // Certifique-se de incluir a classe Ray
 
 class Camera {
@@ -33,7 +34,7 @@ public:
      void printInfo() const;
 
     // Calcular o raio para um pixel específico na tela (considerando perspectiva)
-    //Ray calculateRayForPixel(int x, int y) const;
+    Ray calculateRayForPixel(int x, int y) const;
 
 
     Point getPosition() const { return position; }
