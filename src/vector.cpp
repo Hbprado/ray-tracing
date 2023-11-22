@@ -38,29 +38,3 @@ Vector Vector::normalize() const {
         return Vector();
     }
 }
-
-/*int main() {
-    // Criando dois vetores para teste
-    Vector v1(1.0, 2.0, 3.0);
-    Vector v2(4.0, 5.0, 6.0);
-
-    // Operações com vetores
-    Vector sum = v1 + v2;
-    Vector difference = v1 - v2;
-    Vector scaled = v1 * 2.0;
-    double dotProduct = v1.dot(v2);
-    Vector crossProduct = v1.cross(v2);
-    double length = v1.length();
-    Vector normalized = v1.normalize();
-
-    // Imprimindo resultados
-    std::cout << "Soma: (" << sum.x << ", " << sum.y << ", " << sum.z << ")\n";
-    std::cout << "Diferença: (" << difference.x << ", " << difference.y << ", " << difference.z << ")\n";
-    std::cout << "Multiplicação por escalar: (" << scaled.x << ", " << scaled.y << ", " << scaled.z << ")\n";
-    std::cout << "Produto escalar: " << dotProduct << "\n";
-    std::cout << "Produto vetorial: (" << crossProduct.x << ", " << crossProduct.y << ", " << crossProduct.z << ")\n";
-    std::cout << "Comprimento: " << length << "\n";
-    std::cout << "Vetor normalizado: (" << normalized.x << ", " << normalized.y << ", " << normalized.z << ")\n";
-
-    return 0;
-}*/
