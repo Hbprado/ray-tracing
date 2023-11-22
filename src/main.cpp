@@ -4,6 +4,7 @@
 #include "../includes/vector.h"
 #include "../includes/point.h"
 #include "../includes/ray.h"
+#include "../includes/triangle.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -26,7 +27,7 @@ void saveImage(const std::string& filename, const std::vector<std::vector<Vector
 }
 
 // Função para renderizar a cena
-void render(const Camera& camera, const Sphere& sphere, const Plane& plane, int width, int height) {
+void render(const Camera& camera, const Sphere& sphere1, const Sphere& sphere2, const Plane& plane, const Triangle& triangle, int width, int height) {
     // Buffer de imagem para armazenar as cores dos pixels
     std::vector<std::vector<Vector>> image(height, std::vector<Vector>(width, Vector()));
 
@@ -41,16 +42,22 @@ void render(const Camera& camera, const Sphere& sphere, const Plane& plane, int 
             // Criar um raio da câmera
             Ray ray(camera.getPosition(), rayDirection.normalize());
 
-            // Verificar interseções com esfera e plano
-            double tSphere, tPlane;
-            bool hitSphere = sphere.intersect(ray.getOrigin(), ray.getDirection(), tSphere);
+            // Verificar interseções com esferas, plano e triângulo
+            double tSphere1, tSphere2, tPlane, tTriangle;
+            bool hitSphere1 = sphere1.intersect(ray.getOrigin(), ray.getDirection(), tSphere1);
+            bool hitSphere2 = sphere2.intersect(ray.getOrigin(), ray.getDirection(), tSphere2);
             bool hitPlane = plane.intersect(ray.getOrigin(), ray.getDirection(), tPlane);
+            bool hitTriangle = triangle.intersect(ray.getOrigin(), ray.getDirection(), tTriangle);
 
             // Determinar a cor do pixel com base nas interseções
-            if (hitSphere && (!hitPlane || tSphere < tPlane)) {
-                image[y][x] = sphere.getColor();
-            } else if (hitPlane) {
+            if ((hitSphere1 && (!hitSphere2 || tSphere1 < tSphere2) && (!hitPlane || tSphere1 < tPlane) && (!hitTriangle || tSphere1 < tTriangle)) ||
+                (hitSphere2 && (!hitSphere1 || tSphere2 < tSphere1) && (!hitPlane || tSphere2 < tPlane) && (!hitTriangle || tSphere2 < tTriangle))) {
+                // Escolher a cor da primeira ou segunda esfera com base na interseção mais próxima
+                image[y][x] = hitSphere1 ? sphere1.getColor() : sphere2.getColor();
+            } else if (hitPlane && (!hitTriangle || tPlane < tTriangle)) {
                 image[y][x] = plane.getColor();
+            } else if (hitTriangle) {
+                image[y][x] = triangle.getColor();
             } else {
                 // Cor de fundo (por exemplo, preto)
                 image[y][x] = Vector(0.0, 0.0, 0.0);
@@ -61,15 +68,17 @@ void render(const Camera& camera, const Sphere& sphere, const Plane& plane, int 
     // Salvar a imagem em formato PPM
     saveImage("output.ppm", image, width, height);
 }
-
 int main() {
-    // Configurar a câmera, esfera e plano
+    // Configurar a câmera, esferas, plano e triângulo
     Camera myCamera(Point(0.0, 0.0, 5.0), Point(0.0, 0.0, 0.0), Vector(0.0, 1.0, 0.0), 1.0, 800, 600);
-    Sphere mySphere(Point(0.0, 0.0, 0.0), 1.0, Vector(1.0, 0.0, 0.0));
+    Sphere mySphere1(Point(0.0, 0.0, 0.0), 1.0, Vector(1.0, 0.0, 0.0));
+    Sphere mySphere2(Point(2.0, 0.0, 0.0), 0.5, Vector(0.0, 1.0, 0.0));  // Adicione a segunda esfera aqui
     Plane myPlane(Point(0.0, -1.0, 0.0), Vector(0.0, 1.0, 0.0), Vector(1.0, 0.0, 0.0), Vector(0.0, 0.0, 1.0), Vector(0.5, 0.5, 0.5));
-
+    Triangle myTriangle(Point(0.0, 1.0, 0.0), Point(-1.0, 0.0, 0.0), Point(1.0, 0.0, 0.0), Vector(0.0, 1.0, 0.0));
+    
     // Renderizar a cena
-    render(myCamera, mySphere, myPlane, 800, 600);
+    render(myCamera, mySphere1, mySphere2, myPlane, myTriangle, 800, 600);
+
 
     return 0;
 }
