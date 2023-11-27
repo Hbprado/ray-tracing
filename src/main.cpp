@@ -70,14 +70,14 @@ void render(const Camera& camera, const Sphere& sphere1, const Sphere& sphere2, 
 }
 int main() {
     // Configurar a câmera, esferas, plano e triângulo
-    Camera myCamera(Point(0.0, 0.0, 5.0), Point(0.0, 0.0, 0.0), Vector(0.0, 1.0, 0.0), 1.0, 800, 600);
+    Camera myCamera(Point(0.0, 0.0, 5.0), Point(0.0, 0.0, 0.0), Vector(0.0, 1.0, 0.0), 2.0, 2, 2);
     Sphere mySphere1(Point(0.0, 0.0, 0.0), 1.0, Vector(1.0, 0.0, 0.0));
     Sphere mySphere2(Point(2.0, 0.0, 0.0), 0.5, Vector(0.0, 1.0, 0.0));  // Adicione a segunda esfera aqui
     Plane myPlane(Point(0.0, -1.0, 0.0), Vector(0.0, 1.0, 0.0), Vector(1.0, 0.0, 0.0), Vector(0.0, 0.0, 1.0), Vector(0.5, 0.5, 0.5));
     Triangle myTriangle(Point(0.0, 1.0, 0.0), Point(-1.0, 0.0, 0.0), Point(1.0, 0.0, 0.0), Vector(0.0, 1.0, 0.0));
     
     // Renderizar a cena
-    render(myCamera, mySphere1, mySphere2, myPlane, myTriangle, 800, 600);
+    render(myCamera, mySphere1, mySphere2, myPlane, myTriangle, 800, 800);
 
 
     return 0;
